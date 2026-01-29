@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 # Security flaw no 1 Broken Access Control:
-#from django.views.decorators.http import require_POST
+# from django.views.decorators.http import require_POST
 # Security flaw no 3 Sofware and Data Integrity Failures:
-# from django.db.models import F
+#from django.db.models import F
 # Security flaw no 4 Identification and Authentication Failures:  
 # from django.contrib.auth.decorators import login_required
 from .models import Choice, Question
@@ -76,8 +76,8 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         # Security flaw no 3 Sofware and Data Integrity Failures:
-        # selected_choice.votes = F('votes') + 1
-        # selected_choice.save()
+        #selected_choice.votes = F('votes') + 1
+        #selected_choice.save()
     # Security flaw number 5 Insecure Design:    
      #   voted_questions.append(question_id)
       #  request.session['voted_questions'] = voted_questions

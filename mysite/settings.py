@@ -14,31 +14,45 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # Security flaw no 3 Sofware and Data Integrity Failures:
-SECRET_KEY = 'django-insecure-+9#mrjcj6i!kxtl=*=pb&&4kkp5x1z&e6gazkv+%42%)el_s&l'
+#SECRET_KEY = 'django-insecure-+9#mrjcj6i!kxtl=*=pb&&4kkp5x1z&e6gazkv+%42%)el_s&l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/polls/'
 LOGOUT_REDIRECT_URL = '/polls/'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
+load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+SECRET_KEY = os.getenv("SECRET_KEY", "insecure-dev-key")
+
+DEBUG = os.getenv("DEBUG", "True") == "True"
+
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1"
+).split(",")
+
+#BASE_DIR = Path(__file__).resolve().parent.parent
+#load_dotenv(BASE_DIR / '.env')
+
+#SECRET_KEY = os.getenv('SECRET_KEY')
+#DEBUG = os.getenv('DEBUG') == 'True'
+#ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 # Application definition
 
@@ -58,7 +72,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     # Security flaw no 2 CSRF: 
     # Security flaw no 4 Identification and Authentication Failures:  
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
